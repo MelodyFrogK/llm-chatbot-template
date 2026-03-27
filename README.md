@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # FastAPI LLM Chatbot Template
 
 이 템플릿은 아래 구조를 기준으로 합니다.
@@ -50,3 +51,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 - FastAPI: uvicorn 또는 gunicorn + uvicorn worker
 - Nginx: `/api/` 를 FastAPI VM으로 proxy
 - systemd: FastAPI / RAG 서비스 등록
+=======
+# llm-chatbot-template
+LLM-Rag-DB구성
+>>>>>>> b2772e1f0867af14265f60f74c88def74335a840
