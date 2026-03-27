@@ -1,16 +1,18 @@
 # Student Guide
 
-## 실습 목표
-1. FastAPI 서버 실행
-2. Ollama 호출 확인
-3. Nginx reverse proxy 확인
-4. RAG 검색 API 구조 확인
+## 목표
+- MLX-LM으로 로컬 LLM 실행
+- FastAPI와 연결
+- chat API 테스트
+- Nginx reverse proxy 확인
+- RAG 구조 이해
 
-## 실습 순서
-1. 저장소 다운로드
-2. 환경 변수 파일 생성
-3. FastAPI 실행
-4. health 체크
-5. chat API 테스트
-6. Nginx 연결
-7. RAG 서버 연결
+## 순서
+1. 저장소 clone
+2. fastapi-app 폴더 이동
+3. 가상환경 생성
+4. requirements 설치
+5. MLX 모델 로딩 테스트
+6. FastAPI 실행
+7. /docs 확인
+8. /chat 요청 테스트

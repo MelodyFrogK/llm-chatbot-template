@@ -1,5 +1,5 @@
 [Unit]
-Description=FastAPI LLM Chatbot
+Description=FastAPI MLX Chatbot
 After=network.target
 
 [Service]

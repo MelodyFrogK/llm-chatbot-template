@@ -16,7 +16,6 @@ async def health():
 
 @app.post("/search")
 async def search(req: SearchRequest):
-    # Placeholder implementation
     return {
         "query": req.query,
         "results": [
