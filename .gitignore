@@ -2,3 +2,4 @@
 *.env.db
 .env
 .env.*
+.env.ncp
