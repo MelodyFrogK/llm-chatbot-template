@@ -1,13 +1,13 @@
 # FastAPI + MLX-LM Chatbot Template
 
-macOS Apple Silicon 환경에서 **MLX-LM**을 사용해 로컬 LLM을 실행하고,
+macOS Apple Silicon 환경에서 **MLX-LM**을 사용해 로컬 LLM을 실행하고,  
 **FastAPI**로 웹/API 서버를 제공하는 챗봇 템플릿입니다.
 
 ## 아키텍처
 
 ```text
 User → Web UI → FastAPI → MLX-LM
-User → Web UI → FastAPI → RAG(optional)
+User → Web UI → FastAPI → PostgreSQL(pgvector) → RAG(optional)
 ```
 
 ## 디렉토리 구조
@@ -21,9 +21,16 @@ llm-chatbot-template
 ├── deploy
 ├── docs
 ├── web
+├── data
+│   ├── raw
+│   ├── derived
+│   ├── sql
+│   └── docs
 ├── README.md
 └── .env.example
 ```
+
+---
 
 ## 1. 로컬 실행 방법
 
@@ -46,8 +53,6 @@ pip install -r requirements.txt
 
 ### 1-2-1. 기존 가상환경 다시 진입
 
-이미 가상환경을 만든 뒤 다시 작업할 때는 아래처럼 진입합니다.
-
 ```bash
 cd fastapi-app
 source .venv/bin/activate
@@ -56,8 +61,6 @@ source .venv/bin/activate
 가상환경이 활성화되면 프롬프트 앞에 `(.venv)` 가 표시됩니다.
 
 ### 1-2-2. 가상환경 종료
-
-작업이 끝나면 아래 명령으로 가상환경을 종료합니다.
 
 ```bash
 deactivate
@@ -85,8 +88,6 @@ RAG_BASE_URL=http://127.0.0.1:8100
 
 ### 1-5. MLX-LM 모델 테스트
 
-가상환경에 진입한 상태에서 실행합니다.
-
 ```bash
 cd fastapi-app
 source .venv/bin/activate
@@ -103,9 +104,9 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 ### 1-7. 확인
 
-* Swagger UI: `http://127.0.0.1:8000/docs`
-* Health Check: `http://127.0.0.1:8000/health`
-* Web UI: `http://127.0.0.1:8000`
+- Swagger UI: `http://127.0.0.1:8000/docs`
+- Health Check: `http://127.0.0.1:8000/health`
+- Web UI: `http://127.0.0.1:8000`
 
 ---
 
@@ -114,7 +115,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```bash
 curl -X POST http://127.0.0.1:8000/chat \
 -H "Content-Type: application/json" \
--d '{"message":"안녕하세요. 한글로 자기소개 해줘.","use_rag":false}'
+-d '{"message":"안녕하세요. 한글로 자기소개 해줘.","use_rag":false,"history":[]}'
 ```
 
 정상 응답 예시:
@@ -131,7 +132,7 @@ curl -X POST http://127.0.0.1:8000/chat \
 
 ## 3. Web UI 테스트
 
-`web/index.html` 을 통해 브라우저에서 질문을 입력하고 FastAPI 응답을 받을 수 있습니다.
+브라우저에서 질문을 입력하고 FastAPI 응답을 받을 수 있습니다.
 
 동작 구조:
 
@@ -139,51 +140,233 @@ curl -X POST http://127.0.0.1:8000/chat \
 Browser → /chat → FastAPI → MLX-LM
 ```
 
-테스트 순서:
-
-1. FastAPI 실행
-2. 브라우저에서 `http://127.0.0.1:8000` 접속
-3. 질문 입력
-4. 응답 확인
-
----
-
-## 4. RAG 기능
-
-현재 RAG는 placeholder 구조입니다.
-
-추후 추가할 기능:
-
-* 문서 업로드
-* 문서 분할(chunking)
-* 임베딩 생성
-* 벡터DB 저장
-* 유사도 검색
-* 검색 결과 기반 답변 생성
+현재 Web UI 기능:
+- 채팅형 입력/응답
+- Enter 전송
+- 한글 조합 중복 전송 방지
+- 프론트엔드 history 저장 기반 문맥 유지
 
 ---
 
-## 5. 학생 실습 순서
+## 4. 데이터셋 구조
+
+실습용 데이터는 `data` 폴더 하위에 둡니다.
+
+```text
+data/
+├── raw/
+│   ├── items_master.csv
+│   ├── user_inventory.csv
+│   └── sample_queries.csv
+├── derived/
+│   └── rag_documents_seed.jsonl
+├── sql/
+│   ├── create_tables.sql
+│   └── pgvector_search_examples.sql
+└── docs/
+    └── dataset_guide.md
+```
+
+파일 역할:
+- `items_master.csv` → 장비/소모품 마스터 원본
+- `user_inventory.csv` → 유저 보유 아이템 원본
+- `sample_queries.csv` → 검색 테스트 질문
+- `rag_documents_seed.jsonl` → 청킹 완료 예시 문서
+
+---
+
+## 5. PostgreSQL + pgvector 구성
+
+실습용 데이터베이스 이름은 `game_rag` 를 사용합니다.
+
+### 5-1. 관리자/현재 사용자 및 스키마 상태 확인
+
+테이블 만들기 전에 먼저 현재 접속 계정과 스키마 상태를 확인합니다.
+
+```sql
+select current_user;
+select session_user;
+show search_path;
+select current_schema();
+```
+
+필요하면 `public` 스키마 권한과 소유자를 확인합니다.
+
+```sql
+\dn+
+```
+
+### 5-2. search_path 설정
+
+일반 테이블은 `public` 스키마에 만들고, 확장 타입은 `cdb_admin` 을 사용합니다.
+
+```sql
+set search_path = "$user", public;
+```
+
+### 5-3. 테이블 생성
+
+```sql
+create table if not exists public.items_master (
+    item_id      text primary key,
+    category     text not null,
+    item_name    text not null,
+    attack       integer,
+    accuracy     integer,
+    defense      integer,
+    effect       text,
+    rarity       text
+);
+
+create table if not exists public.user_inventory (
+    inventory_id bigserial primary key,
+    user_id      text not null,
+    user_name    text not null,
+    category     text not null,
+    item_name    text not null,
+    count        integer not null check (count >= 0)
+);
+
+create table if not exists public.rag_documents (
+    id         text primary key,
+    source     text not null,
+    doc_type   text not null,
+    category   text not null,
+    title      text not null,
+    content    text not null,
+    embedding  cdb_admin.vector(1024)
+);
+```
+
+### 5-4. 조회 예시
+
+김택진 인벤토리 조회:
+
+```sql
+select user_name, category, item_name, count
+from public.user_inventory
+where user_name = '김택진'
+order by category, item_name;
+```
+
+은빛검 능력치 조회:
+
+```sql
+select item_name, attack, accuracy, rarity
+from public.items_master
+where item_name = '은빛검';
+```
+
+---
+
+## 6. CSV 원본 적재
+
+실습 순서:
+1. `data/raw/items_master.csv` 확인
+2. `data/raw/user_inventory.csv` 확인
+3. PostgreSQL 테이블 생성
+4. CSV 적재
+5. 적재 결과 select로 확인
+
+---
+
+## 7. RAG 임베딩 및 PostgreSQL 적재
+
+### 7-1. RAG 단계용 패키지 설치
+
+가상환경에 진입한 뒤 아래 패키지를 설치합니다.
+
+```bash
+cd fastapi-app
+source .venv/bin/activate
+pip install sentence-transformers psycopg2-binary tqdm
+```
+
+패키지 역할:
+- `sentence-transformers` : 문서를 임베딩 벡터로 변환
+- `psycopg2-binary` : PostgreSQL 접속 및 insert/select
+- `tqdm` : 임베딩/적재 진행률 표시
+
+### 7-2. DB 접속 정보 파일 생성
+
+레포 루트에 `.env.db` 파일을 만듭니다.
+
+```bash
+nano .env.db
+```
+
+내용 예시:
+
+```env
+PGHOST=DB서버IP
+PGPORT=5432
+PGDATABASE=game_rag
+PGUSER=계정
+PGPASSWORD=비밀번호
+```
+
+### 7-3. 실행
+
+레포 루트에서 실행합니다.
+
+```bash
+cd ~/llm-chatbot-template
+source fastapi-app/.venv/bin/activate
+export $(grep -v '^#' .env.db | xargs)
+python3 rag/ingest_pgvector.py
+```
+
+### 7-4. 현재 ingest 동작
+
+`rag/ingest_pgvector.py` 는 아래 파일을 읽습니다.
+
+```text
+data/derived/rag_documents_seed.jsonl
+```
+
+동작 흐름:
+
+```text
+JSONL 문서 읽기
+→ multilingual-e5-large 임베딩 생성
+→ public.rag_documents insert
+→ on conflict 시 update
+```
+
+### 7-5. 적재 확인
+
+```sql
+select count(*) from public.rag_documents;
+```
+
+```sql
+select id, title, category
+from public.rag_documents
+limit 10;
+```
+
+---
+
+## 8. 학생 실습 흐름
 
 ### Lab 1. 저장소 clone
-
 ### Lab 2. Python 가상환경 생성
-
-### Lab 3. 가상환경 진입 및 패키지 설치
-
-### Lab 4. MLX-LM 모델 테스트
-
-### Lab 5. FastAPI 실행
-
-### Lab 6. `/health`, `/chat` 테스트
-
-### Lab 7. Web UI 연결
-
-### Lab 8. RAG 구조 이해 및 확장
+### Lab 3. MLX-LM 모델 테스트
+### Lab 4. FastAPI 실행
+### Lab 5. `/health`, `/chat` 테스트
+### Lab 6. Web UI 연결
+### Lab 7. CSV 원본 확인
+### Lab 8. PostgreSQL 사용자/스키마 상태 확인
+### Lab 9. PostgreSQL 테이블 생성
+### Lab 10. CSV 적재
+### Lab 11. 청킹 JSONL 확인
+### Lab 12. 임베딩 생성 및 pgvector 적재
+### Lab 13. 유사도 검색
+### Lab 14. FastAPI RAG 연동
 
 ---
 
-## 6. 자주 발생하는 문제
+## 9. 자주 발생하는 문제
 
 ### `.env` 파일이 안 보임
 
@@ -203,49 +386,63 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### `zsh: command not found: python`
+### `ModuleNotFoundError: No module named 'sentence_transformers'`
 
-macOS에서는 `python` 대신 `python3` 를 사용하는 경우가 많습니다.
+RAG 단계용 패키지가 설치되지 않은 경우입니다.
 
 ```bash
-python3 --version
+source fastapi-app/.venv/bin/activate
+pip install sentence-transformers psycopg2-binary tqdm
 ```
 
-### `zsh: command not found: --prompt`
+### `FileNotFoundError: data/derived/rag_documents_seed.jsonl`
 
-명령어 없이 옵션만 입력한 경우입니다.
-옵션 앞에 실행 명령어가 있어야 합니다.
-
-잘못된 예시:
+실행 위치가 잘못된 경우입니다.  
+레포 루트에서 실행합니다.
 
 ```bash
---prompt "안녕하세요"
+cd ~/llm-chatbot-template
+python3 rag/ingest_pgvector.py
 ```
 
-정상 예시:
+### `psycopg2.OperationalError: 127.0.0.1 port 5432 connection refused`
 
-```bash
-mlx_lm.generate --prompt "안녕하세요"
+로컬 DB가 아니라 Ncloud DB를 써야 하므로 `.env.db` 의 `PGHOST` 를 실제 DB 서버 주소로 지정해야 합니다.
+
+### `permission denied for schema cdb_admin`
+
+`cdb_admin` 은 확장 전용 스키마입니다.  
+일반 테이블은 `public` 에 만들고, vector 타입만 `cdb_admin.vector(...)` 로 사용합니다.
+
+### `no schema has been selected to create in`
+
+`search_path` 가 비정상이거나 기본 스키마가 선택되지 않은 상태입니다.  
+먼저 아래를 확인합니다.
+
+```sql
+select current_user;
+show search_path;
+select current_schema();
+```
+
+그리고 필요하면:
+
+```sql
+set search_path = "$user", public;
 ```
 
 ### `/chat` 접속 시 `Method Not Allowed`
 
-`/chat` 은 **POST 전용**입니다.
-브라우저 주소창으로 직접 열면 `GET` 요청이 들어가므로 405가 발생할 수 있습니다.
-
-테스트는 아래 중 하나로 진행합니다.
-
-* `/docs`
-* `curl`
-* Web UI
+`/chat` 은 POST 전용입니다.  
+브라우저 주소창으로 직접 열지 말고 `/docs`, `curl`, Web UI 로 테스트합니다.
 
 ### GitHub push 인증 실패
 
-GitHub 비밀번호 대신 **PAT 토큰**을 사용해야 합니다.
+GitHub 비밀번호 대신 PAT 토큰을 사용해야 합니다.
 
 ---
 
-## 7. 운영 방향
+## 10. 운영 방향
 
 현재 템플릿은 **macOS 로컬 개발 기준**입니다.
 
@@ -253,23 +450,19 @@ GitHub 비밀번호 대신 **PAT 토큰**을 사용해야 합니다.
 
 ```text
 개발: Mac + MLX-LM
-운영: Linux VM + Nginx + FastAPI + 별도 추론엔진 + RAG
+운영: Linux VM + Nginx + FastAPI + PostgreSQL(pgvector) + 별도 추론엔진 + RAG
 ```
 
 즉,
-
-* 개발은 MLX-LM
-* 운영은 Linux 기반 별도 추론엔진(Ollama, vLLM 등) 분리 권장
+- 개발은 MLX-LM
+- 운영은 Linux 기반 별도 추론엔진(vLLM, Ollama 등) 분리 권장
 
 ---
 
-## 8. Git 반영 예시
-
-README 또는 코드 수정 후 아래처럼 반영합니다.
+## 11. Git 반영 예시
 
 ```bash
 git add .
-git commit -m "Update README for MLX-LM workflow"
+git commit -m "Update README for pgvector RAG workflow"
 git push
 ```
-

@@ -1,0 +1,56 @@
+{"id": "W001", "source": "items_master.csv", "doc_type": "item", "category": "무기", "title": "은빛검 정보", "content": "은빛검은 무기입니다. 공격력은 13이고 명중률은 3입니다. 등급은 희귀입니다."}
+{"id": "W002", "source": "items_master.csv", "doc_type": "item", "category": "무기", "title": "화염검 정보", "content": "화염검은 무기입니다. 공격력은 31이고 명중률은 2입니다. 등급은 일반입니다."}
+{"id": "W003", "source": "items_master.csv", "doc_type": "item", "category": "무기", "title": "서리창 정보", "content": "서리창은 무기입니다. 공격력은 28이고 명중률은 3입니다. 등급은 희귀입니다."}
+{"id": "W004", "source": "items_master.csv", "doc_type": "item", "category": "무기", "title": "폭풍창 정보", "content": "폭풍창은 무기입니다. 공격력은 29이고 명중률은 2입니다. 등급은 고급입니다."}
+{"id": "W005", "source": "items_master.csv", "doc_type": "item", "category": "무기", "title": "달빛활 정보", "content": "달빛활은 무기입니다. 공격력은 12이고 명중률은 3입니다. 등급은 영웅입니다."}
+{"id": "W006", "source": "items_master.csv", "doc_type": "item", "category": "무기", "title": "사냥꾼활 정보", "content": "사냥꾼활은 무기입니다. 공격력은 24이고 명중률은 3입니다. 등급은 고급입니다."}
+{"id": "W007", "source": "items_master.csv", "doc_type": "item", "category": "무기", "title": "암흑단검 정보", "content": "암흑단검은 무기입니다. 공격력은 13이고 명중률은 8입니다. 등급은 일반입니다."}
+{"id": "W008", "source": "items_master.csv", "doc_type": "item", "category": "무기", "title": "용맹도끼 정보", "content": "용맹도끼은 무기입니다. 공격력은 29이고 명중률은 3입니다. 등급은 고급입니다."}
+{"id": "W009", "source": "items_master.csv", "doc_type": "item", "category": "무기", "title": "천둥망치 정보", "content": "천둥망치은 무기입니다. 공격력은 31이고 명중률은 2입니다. 등급은 영웅입니다."}
+{"id": "W010", "source": "items_master.csv", "doc_type": "item", "category": "무기", "title": "유성지팡이 정보", "content": "유성지팡이은 무기입니다. 공격력은 12이고 명중률은 5입니다. 등급은 일반입니다."}
+{"id": "W011", "source": "items_master.csv", "doc_type": "item", "category": "무기", "title": "철벽검 정보", "content": "철벽검은 무기입니다. 공격력은 28이고 명중률은 4입니다. 등급은 희귀입니다."}
+{"id": "W012", "source": "items_master.csv", "doc_type": "item", "category": "무기", "title": "맹독창 정보", "content": "맹독창은 무기입니다. 공격력은 24이고 명중률은 4입니다. 등급은 일반입니다."}
+{"id": "A001", "source": "items_master.csv", "doc_type": "item", "category": "방어구", "title": "강철갑옷 정보", "content": "강철갑옷은 방어구입니다. 방어력은 14입니다. 등급은 고급입니다."}
+{"id": "A002", "source": "items_master.csv", "doc_type": "item", "category": "방어구", "title": "은빛갑옷 정보", "content": "은빛갑옷은 방어구입니다. 방어력은 25입니다. 등급은 고급입니다."}
+{"id": "A003", "source": "items_master.csv", "doc_type": "item", "category": "방어구", "title": "용비늘갑옷 정보", "content": "용비늘갑옷은 방어구입니다. 방어력은 11입니다. 등급은 고급입니다."}
+{"id": "A004", "source": "items_master.csv", "doc_type": "item", "category": "방어구", "title": "수호방패 정보", "content": "수호방패은 방어구입니다. 방어력은 19입니다. 등급은 일반입니다."}
+{"id": "A005", "source": "items_master.csv", "doc_type": "item", "category": "방어구", "title": "기사투구 정보", "content": "기사투구은 방어구입니다. 방어력은 25입니다. 등급은 일반입니다."}
+{"id": "A006", "source": "items_master.csv", "doc_type": "item", "category": "방어구", "title": "정찰망토 정보", "content": "정찰망토은 방어구입니다. 방어력은 26입니다. 등급은 일반입니다."}
+{"id": "A007", "source": "items_master.csv", "doc_type": "item", "category": "방어구", "title": "마법로브 정보", "content": "마법로브은 방어구입니다. 방어력은 27입니다. 등급은 고급입니다."}
+{"id": "A008", "source": "items_master.csv", "doc_type": "item", "category": "방어구", "title": "가죽장갑 정보", "content": "가죽장갑은 방어구입니다. 방어력은 23입니다. 등급은 영웅입니다."}
+{"id": "A009", "source": "items_master.csv", "doc_type": "item", "category": "방어구", "title": "철제장화 정보", "content": "철제장화은 방어구입니다. 방어력은 18입니다. 등급은 영웅입니다."}
+{"id": "A010", "source": "items_master.csv", "doc_type": "item", "category": "방어구", "title": "수호반지 정보", "content": "수호반지은 방어구입니다. 방어력은 26입니다. 등급은 영웅입니다."}
+{"id": "A011", "source": "items_master.csv", "doc_type": "item", "category": "방어구", "title": "빙결갑옷 정보", "content": "빙결갑옷은 방어구입니다. 방어력은 19입니다. 등급은 희귀입니다."}
+{"id": "A012", "source": "items_master.csv", "doc_type": "item", "category": "방어구", "title": "태양망토 정보", "content": "태양망토은 방어구입니다. 방어력은 15입니다. 등급은 고급입니다."}
+{"id": "C001", "source": "items_master.csv", "doc_type": "item", "category": "소모품", "title": "회복 물약 정보", "content": "회복 물약은 소모품입니다. 효과는 체력을 즉시 50 회복입니다. 등급은 희귀입니다."}
+{"id": "C002", "source": "items_master.csv", "doc_type": "item", "category": "소모품", "title": "고급 회복 물약 정보", "content": "고급 회복 물약은 소모품입니다. 효과는 체력을 즉시 100 회복입니다. 등급은 일반입니다."}
+{"id": "C003", "source": "items_master.csv", "doc_type": "item", "category": "소모품", "title": "마나 물약 정보", "content": "마나 물약은 소모품입니다. 효과는 마나를 즉시 40 회복입니다. 등급은 일반입니다."}
+{"id": "C004", "source": "items_master.csv", "doc_type": "item", "category": "소모품", "title": "해독제 정보", "content": "해독제은 소모품입니다. 효과는 중독 상태 해제입니다. 등급은 희귀입니다."}
+{"id": "C005", "source": "items_master.csv", "doc_type": "item", "category": "소모품", "title": "부활 깃털 정보", "content": "부활 깃털은 소모품입니다. 효과는 전투 불능 상태에서 부활입니다. 등급은 고급입니다."}
+{"id": "C006", "source": "items_master.csv", "doc_type": "item", "category": "소모품", "title": "힘의 두루마리 정보", "content": "힘의 두루마리은 소모품입니다. 효과는 10분간 공격력 증가입니다. 등급은 희귀입니다."}
+{"id": "C007", "source": "items_master.csv", "doc_type": "item", "category": "소모품", "title": "수호의 두루마리 정보", "content": "수호의 두루마리은 소모품입니다. 효과는 10분간 방어력 증가입니다. 등급은 고급입니다."}
+{"id": "C008", "source": "items_master.csv", "doc_type": "item", "category": "소모품", "title": "민첩의 비약 정보", "content": "민첩의 비약은 소모품입니다. 효과는 10분간 명중률 증가입니다. 등급은 고급입니다."}
+{"id": "C009", "source": "items_master.csv", "doc_type": "item", "category": "소모품", "title": "화염 폭탄 정보", "content": "화염 폭탄은 소모품입니다. 효과는 적 전체에 화염 피해입니다. 등급은 희귀입니다."}
+{"id": "C010", "source": "items_master.csv", "doc_type": "item", "category": "소모품", "title": "귀환 주문서 정보", "content": "귀환 주문서은 소모품입니다. 효과는 마을로 즉시 귀환입니다. 등급은 희귀입니다."}
+{"id": "C011", "source": "items_master.csv", "doc_type": "item", "category": "소모품", "title": "은신 물약 정보", "content": "은신 물약은 소모품입니다. 효과는 30초간 은신 상태입니다. 등급은 고급입니다."}
+{"id": "C012", "source": "items_master.csv", "doc_type": "item", "category": "소모품", "title": "정비 키트 정보", "content": "정비 키트은 소모품입니다. 효과는 장비 내구도 회복입니다. 등급은 희귀입니다."}
+{"id": "INV-이민수", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "이민수 인벤토리", "content": "이민수은 무기로 달빛활 2개, 용맹도끼 1개를 가지고 있습니다. 방어구로 강철갑옷 1개, 기사투구 1개를 가지고 있습니다. 소모품으로 귀환 주문서 8개, 은신 물약 6개, 민첩의 비약 3개, 부활 깃털 2개, 수호의 두루마리 8개를 가지고 있습니다."}
+{"id": "INV-박서준", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "박서준 인벤토리", "content": "박서준은 무기로 폭풍창 2개, 달빛활 2개를 가지고 있습니다. 방어구로 태양망토 1개, 수호방패 1개를 가지고 있습니다. 소모품으로 수호의 두루마리 5개, 민첩의 비약 3개, 고급 회복 물약 7개, 마나 물약 5개를 가지고 있습니다."}
+{"id": "INV-최유진", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "최유진 인벤토리", "content": "최유진은 무기로 암흑단검 1개, 사냥꾼활 2개, 맹독창 1개, 폭풍창 2개를 가지고 있습니다. 방어구로 은빛갑옷 1개, 용비늘갑옷 1개를 가지고 있습니다. 소모품으로 해독제 5개, 은신 물약 1개, 정비 키트 3개를 가지고 있습니다."}
+{"id": "INV-정하늘", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "정하늘 인벤토리", "content": "정하늘은 무기로 천둥망치 2개, 사냥꾼활 2개, 유성지팡이 2개를 가지고 있습니다. 방어구로 용비늘갑옷 1개, 철제장화 1개, 수호반지 1개를 가지고 있습니다. 소모품으로 은신 물약 2개, 회복 물약 8개, 민첩의 비약 7개, 화염 폭탄 1개, 수호의 두루마리 4개를 가지고 있습니다."}
+{"id": "INV-한지민", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "한지민 인벤토리", "content": "한지민은 무기로 폭풍창 2개, 용맹도끼 1개를 가지고 있습니다. 방어구로 은빛갑옷 1개, 정찰망토 1개를 가지고 있습니다. 소모품으로 회복 물약 2개, 고급 회복 물약 4개, 정비 키트 7개, 마나 물약 3개, 은신 물약 5개를 가지고 있습니다."}
+{"id": "INV-오세훈", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "오세훈 인벤토리", "content": "오세훈은 무기로 유성지팡이 1개, 사냥꾼활 1개, 용맹도끼 2개를 가지고 있습니다. 방어구로 은빛갑옷 1개, 가죽장갑 1개를 가지고 있습니다. 소모품으로 민첩의 비약 5개, 정비 키트 8개, 부활 깃털 3개, 고급 회복 물약 1개를 가지고 있습니다."}
+{"id": "INV-유다은", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "유다은 인벤토리", "content": "유다은은 무기로 천둥망치 2개, 사냥꾼활 2개를 가지고 있습니다. 방어구로 태양망토 1개, 철제장화 1개를 가지고 있습니다. 소모품으로 화염 폭탄 3개, 부활 깃털 6개, 고급 회복 물약 4개를 가지고 있습니다."}
+{"id": "INV-장민혁", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "장민혁 인벤토리", "content": "장민혁은 무기로 천둥망치 1개, 맹독창 1개, 사냥꾼활 2개, 폭풍창 2개를 가지고 있습니다. 방어구로 수호방패 1개, 마법로브 1개를 가지고 있습니다. 소모품으로 해독제 5개, 정비 키트 4개, 화염 폭탄 6개, 민첩의 비약 8개, 힘의 두루마리 6개를 가지고 있습니다."}
+{"id": "INV-신예린", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "신예린 인벤토리", "content": "신예린은 무기로 화염검 2개, 폭풍창 2개, 맹독창 1개를 가지고 있습니다. 방어구로 가죽장갑 1개, 수호방패 1개를 가지고 있습니다. 소모품으로 해독제 2개, 민첩의 비약 7개, 귀환 주문서 4개, 회복 물약 8개를 가지고 있습니다."}
+{"id": "INV-조현우", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "조현우 인벤토리", "content": "조현우은 무기로 암흑단검 1개, 철벽검 1개를 가지고 있습니다. 방어구로 은빛갑옷 1개, 마법로브 1개, 가죽장갑 1개를 가지고 있습니다. 소모품으로 정비 키트 3개, 고급 회복 물약 8개, 마나 물약 3개, 귀환 주문서 8개를 가지고 있습니다."}
+{"id": "INV-문가영", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "문가영 인벤토리", "content": "문가영은 무기로 사냥꾼활 1개, 서리창 1개, 천둥망치 1개, 유성지팡이 2개를 가지고 있습니다. 방어구로 강철갑옷 1개, 태양망토 1개를 가지고 있습니다. 소모품으로 은신 물약 4개, 고급 회복 물약 5개, 화염 폭탄 4개, 마나 물약 6개, 수호의 두루마리 5개를 가지고 있습니다."}
+{"id": "INV-강태완", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "강태완 인벤토리", "content": "강태완은 무기로 암흑단검 1개, 서리창 2개, 은빛검 1개, 사냥꾼활 1개를 가지고 있습니다. 방어구로 빙결갑옷 1개, 수호반지 1개, 철제장화 1개를 가지고 있습니다. 소모품으로 화염 폭탄 3개, 마나 물약 3개, 정비 키트 3개, 은신 물약 8개를 가지고 있습니다."}
+{"id": "INV-윤서아", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "윤서아 인벤토리", "content": "윤서아은 무기로 맹독창 1개, 화염검 2개, 천둥망치 1개, 은빛검 1개를 가지고 있습니다. 방어구로 빙결갑옷 1개, 철제장화 1개, 태양망토 1개를 가지고 있습니다. 소모품으로 민첩의 비약 8개, 고급 회복 물약 1개, 화염 폭탄 2개, 회복 물약 8개, 해독제 6개를 가지고 있습니다."}
+{"id": "INV-임도현", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "임도현 인벤토리", "content": "임도현은 무기로 천둥망치 1개, 유성지팡이 2개, 맹독창 1개, 폭풍창 2개를 가지고 있습니다. 방어구로 가죽장갑 1개, 철제장화 1개, 빙결갑옷 1개를 가지고 있습니다. 소모품으로 화염 폭탄 2개, 해독제 7개, 정비 키트 8개, 부활 깃털 6개를 가지고 있습니다."}
+{"id": "INV-배수지", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "배수지 인벤토리", "content": "배수지은 무기로 철벽검 1개, 폭풍창 2개를 가지고 있습니다. 방어구로 은빛갑옷 1개, 수호방패 1개, 기사투구 1개를 가지고 있습니다. 소모품으로 마나 물약 3개, 은신 물약 8개, 힘의 두루마리 4개를 가지고 있습니다."}
+{"id": "INV-서지호", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "서지호 인벤토리", "content": "서지호은 무기로 화염검 2개, 암흑단검 1개, 용맹도끼 2개, 서리창 1개를 가지고 있습니다. 방어구로 용비늘갑옷 1개, 마법로브 1개를 가지고 있습니다. 소모품으로 수호의 두루마리 6개, 힘의 두루마리 8개, 정비 키트 8개, 해독제 1개, 은신 물약 7개를 가지고 있습니다."}
+{"id": "INV-노윤아", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "노윤아 인벤토리", "content": "노윤아은 무기로 천둥망치 1개, 유성지팡이 1개, 달빛활 2개를 가지고 있습니다. 방어구로 은빛갑옷 1개, 수호방패 1개를 가지고 있습니다. 소모품으로 고급 회복 물약 3개, 부활 깃털 7개, 은신 물약 5개를 가지고 있습니다."}
+{"id": "INV-송지훈", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "송지훈 인벤토리", "content": "송지훈은 무기로 서리창 2개, 천둥망치 1개, 철벽검 1개를 가지고 있습니다. 방어구로 태양망토 1개, 정찰망토 1개, 은빛갑옷 1개를 가지고 있습니다. 소모품으로 회복 물약 5개, 마나 물약 2개, 수호의 두루마리 4개, 고급 회복 물약 2개를 가지고 있습니다."}
+{"id": "INV-백지민", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "백지민 인벤토리", "content": "백지민은 무기로 화염검 1개, 용맹도끼 2개, 은빛검 1개를 가지고 있습니다. 방어구로 철제장화 1개, 마법로브 1개, 기사투구 1개를 가지고 있습니다. 소모품으로 마나 물약 3개, 회복 물약 4개, 화염 폭탄 5개, 해독제 5개, 고급 회복 물약 4개를 가지고 있습니다."}
+{"id": "INV-김택진", "source": "user_inventory.csv", "doc_type": "inventory", "category": "유저정보", "title": "김택진 인벤토리", "content": "김택진은 무기로 은빛검 1개, 서리창 1개, 달빛활 1개를 가지고 있습니다. 방어구로 강철갑옷 1개, 수호방패 1개를 가지고 있습니다. 소모품으로 회복 물약 5개, 귀환 주문서 2개를 가지고 있습니다."}

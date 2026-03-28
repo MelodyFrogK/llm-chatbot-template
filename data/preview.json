@@ -1,0 +1,71 @@
+{
+  "items_master_example": {
+    "item_id": "W001",
+    "category": "무기",
+    "item_name": "은빛검",
+    "attack": 13,
+    "accuracy": 3,
+    "defense": "",
+    "effect": "",
+    "rarity": "희귀"
+  },
+  "user_inventory_example": [
+    {
+      "user_id": "U001",
+      "user_name": "김택진",
+      "category": "무기",
+      "item_name": "은빛검",
+      "count": 1
+    },
+    {
+      "user_id": "U001",
+      "user_name": "김택진",
+      "category": "무기",
+      "item_name": "서리창",
+      "count": 1
+    },
+    {
+      "user_id": "U001",
+      "user_name": "김택진",
+      "category": "무기",
+      "item_name": "달빛활",
+      "count": 1
+    },
+    {
+      "user_id": "U001",
+      "user_name": "김택진",
+      "category": "방어구",
+      "item_name": "강철갑옷",
+      "count": 1
+    },
+    {
+      "user_id": "U001",
+      "user_name": "김택진",
+      "category": "방어구",
+      "item_name": "수호방패",
+      "count": 1
+    },
+    {
+      "user_id": "U001",
+      "user_name": "김택진",
+      "category": "소모품",
+      "item_name": "회복 물약",
+      "count": 5
+    },
+    {
+      "user_id": "U001",
+      "user_name": "김택진",
+      "category": "소모품",
+      "item_name": "귀환 주문서",
+      "count": 2
+    }
+  ],
+  "rag_doc_example": {
+    "id": "W001",
+    "source": "items_master.csv",
+    "doc_type": "item",
+    "category": "무기",
+    "title": "은빛검 정보",
+    "content": "은빛검은 무기입니다. 공격력은 13이고 명중률은 3입니다. 등급은 희귀입니다."
+  }
+}

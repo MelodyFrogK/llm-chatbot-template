@@ -1,1 +1,0 @@
-print("Document ingest placeholder")
