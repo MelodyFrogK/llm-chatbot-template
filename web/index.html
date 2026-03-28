@@ -11,14 +11,16 @@
       margin: 0;
       padding: 0;
     }
+
     .chat-wrap {
       max-width: 900px;
       margin: 30px auto;
       background: #fff;
       border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       overflow: hidden;
     }
+
     .chat-header {
       background: #111827;
       color: white;
@@ -26,23 +28,28 @@
       font-size: 20px;
       font-weight: bold;
     }
+
     .chat-box {
       height: 600px;
       overflow-y: auto;
       padding: 20px;
       background: #f9fafb;
     }
+
     .msg {
       margin-bottom: 16px;
       display: flex;
       flex-direction: column;
     }
+
     .msg.user {
       align-items: flex-end;
     }
+
     .msg.bot {
       align-items: flex-start;
     }
+
     .bubble {
       max-width: 75%;
       padding: 12px 16px;
@@ -51,14 +58,17 @@
       white-space: pre-wrap;
       word-break: break-word;
     }
+
     .user .bubble {
       background: #2563eb;
       color: white;
     }
+
     .bot .bubble {
       background: #e5e7eb;
       color: #111827;
     }
+
     .chat-input {
       display: flex;
       gap: 10px;
@@ -66,6 +76,7 @@
       border-top: 1px solid #e5e7eb;
       background: white;
     }
+
     .chat-input textarea {
       flex: 1;
       resize: none;
@@ -75,6 +86,7 @@
       border-radius: 10px;
       font-size: 14px;
     }
+
     .chat-input button {
       width: 120px;
       border: none;
@@ -84,10 +96,12 @@
       font-size: 15px;
       cursor: pointer;
     }
+
     .chat-input button:disabled {
       background: #9ca3af;
       cursor: not-allowed;
     }
+
     .status {
       font-size: 12px;
       color: #6b7280;
@@ -99,10 +113,12 @@
   <div class="chat-wrap">
     <div class="chat-header">로컬 MLX 챗봇</div>
     <div id="chatBox" class="chat-box"></div>
+
     <div class="chat-input">
       <textarea id="message" placeholder="질문을 입력하세요"></textarea>
       <button id="sendBtn" onclick="sendChat()">전송</button>
     </div>
+
     <div class="status" id="status">준비됨</div>
   </div>
 
@@ -111,6 +127,10 @@
     const messageInput = document.getElementById("message");
     const sendBtn = document.getElementById("sendBtn");
     const statusBox = document.getElementById("status");
+
+    let isSending = false;
+    let isComposing = false;
+    let chatHistory = [];
 
     function addMessage(role, text) {
       const msg = document.createElement("div");
@@ -127,12 +147,16 @@
 
     async function sendChat() {
       const message = messageInput.value.trim();
+
       if (!message) return;
+      if (isSending) return;
+
+      isSending = true;
+      sendBtn.disabled = true;
+      statusBox.textContent = "응답 생성 중...";
 
       addMessage("user", message);
       messageInput.value = "";
-      sendBtn.disabled = true;
-      statusBox.textContent = "응답 생성 중...";
 
       try {
         const res = await fetch("/chat", {
@@ -140,6 +164,7 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             message: message,
+            history: chatHistory,
             use_rag: false
           })
         });
@@ -150,17 +175,38 @@
           addMessage("bot", `오류: ${data.detail || "알 수 없는 오류"}`);
         } else {
           addMessage("bot", data.response || "응답이 비어 있습니다.");
+
+          chatHistory.push({
+            role: "user",
+            content: message
+          });
+
+          chatHistory.push({
+            role: "assistant",
+            content: data.response || ""
+          });
         }
       } catch (err) {
         addMessage("bot", `요청 실패: ${err}`);
       } finally {
+        isSending = false;
         sendBtn.disabled = false;
         statusBox.textContent = "준비됨";
+        messageInput.focus();
       }
     }
 
+    messageInput.addEventListener("compositionstart", () => {
+      isComposing = true;
+    });
+
+    messageInput.addEventListener("compositionend", () => {
+      isComposing = false;
+    });
+
     messageInput.addEventListener("keydown", function (e) {
       if (e.key === "Enter" && !e.shiftKey) {
+        if (isComposing || e.isComposing) return;
         e.preventDefault();
         sendChat();
       }
