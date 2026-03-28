@@ -1,5 +1,4 @@
 .env.db
 *.env.db
 .env
-.env.*
 .env.ncp
